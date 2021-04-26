@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from "react";
+
+let initialItems = ["Learn React", "Learn TypeScript"]
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  let [items, setItems] = useState(initialItems)
+  function handleClick(event) {
+  setItems([...items].reverse()) // items is copied Props in React should not be mutated
+  }
+
+ return <div className="p-3">
+    <ul>
+      {items.map((item ) =>
+        <li key={item}>
+          <label>
+            <input type="checkbox"/>
+            {" "}
+            {item}
+          </label>
+        </li>
+      )}
+    </ul>
+    <button type="button" className="btn btn-primary" onClick={handleClick}>
+      Reverse
+    </button>
+  </div>
+
 }
 
 export default App;
